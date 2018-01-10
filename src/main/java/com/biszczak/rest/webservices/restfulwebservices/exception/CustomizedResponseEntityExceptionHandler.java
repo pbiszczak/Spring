@@ -32,15 +32,6 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     }
 
 
-    @ExceptionHandler(EmptyUserException.class)
-    public final ResponseEntity<Object> handleEmptyUserException(EmptyUserException ex, WebRequest request) {
-        ExceptionResponse exceptionResponse =
-                new ExceptionResponse(new Date(), ex.getMessage(), request.getDescription(false));
-
-        return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_ACCEPTABLE);
-    }
-
-
     @ExceptionHandler(UsersListEmptyException.class)
     public final ResponseEntity<Object> handleUsersListEmptyException(UsersListEmptyException ex, WebRequest request) {
         ExceptionResponse exceptionResponse =
@@ -48,7 +39,6 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.NOT_FOUND);
     }
-
 
 
     @ExceptionHandler(UserNotFoundException.class)
@@ -63,7 +53,7 @@ public class CustomizedResponseEntityExceptionHandler extends ResponseEntityExce
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex, HttpHeaders headers, HttpStatus status, WebRequest request) {
 
         ExceptionResponse exceptionResponse =
-                new ExceptionResponse(new Date(), "Argument validation failed", ex.getBindingResult().getFieldError().toString());   // own message to user
+                new ExceptionResponse(new Date(), "Argument validation failed", ex.getBindingResult().getFieldError().getDefaultMessage());   // own message to user
 
         return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
     }

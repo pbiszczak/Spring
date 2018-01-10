@@ -1,6 +1,5 @@
 package com.biszczak.rest.webservices.restfulwebservices.controllers;
 
-import com.biszczak.rest.webservices.restfulwebservices.exception.EmptyUserException;
 import com.biszczak.rest.webservices.restfulwebservices.exception.UserNotFoundException;
 import com.biszczak.rest.webservices.restfulwebservices.exception.UsersListEmptyException;
 import com.biszczak.rest.webservices.restfulwebservices.models.User;
@@ -52,9 +51,6 @@ public class UserController {
     public ResponseEntity<Object> createUser(@Valid @RequestBody User user) {
         User savedUser = service.save(user);
         // if created get /users/{id}
-        if(user.getBrithDate() == null || user.getName() == null) {
-            throw new EmptyUserException("POST user is empty!");
-        }
         URI location = ServletUriComponentsBuilder
                 .fromCurrentRequest()
                 .path("/{id}")
