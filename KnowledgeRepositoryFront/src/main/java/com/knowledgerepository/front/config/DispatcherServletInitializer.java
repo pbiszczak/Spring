@@ -12,7 +12,7 @@ public class DispatcherServletInitializer extends AbstractAnnotationConfigDispat
     @Override
     protected Class<?>[] getServletConfigClasses() {
 
-        return new Class[]{ Configuraton.class };
+        return new Class[]{ FrontConfiguration.class };
     }
 
     @Override
