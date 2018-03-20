@@ -1,0 +1,15 @@
+version: '2.1'
+services:
+  db:
+    image: mysql
+    environment:
+      - MYSQL_DATABASE=kr
+      - MYSQL_ROOT_PASSWORD=root12345
+      - MYSQL_USER=dbuser123
+      - MYSQL_PASSWORD=dbuser123
+    volumes:
+      - ./mysql_init:/docker-entrypoint-initdb.d
+    ports:
+      - "3306:3306"
+    expose:
+      - '3306'

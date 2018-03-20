@@ -10,7 +10,7 @@ import org.springframework.web.servlet.view.InternalResourceViewResolver;
 
 @Configuration
 @EnableWebMvc
-@ComponentScan(basePackages = "com.knowledgerepository.front")
+@ComponentScan(basePackages = "com.knowledgerepository")
 public class FrontConfiguration implements WebMvcConfigurer {
 
 

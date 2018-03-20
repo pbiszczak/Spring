@@ -1,5 +1,11 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+
+<spring:url var="css" value="/resources/css/"/>
+<spring:url var="js" value="/resources/js/"/>
+<spring:url var="images" value="/resources/images/"/>
+
 <html>
 <head>
     <title>Knowledge Repository v0.01 - Login Page</title>
@@ -44,6 +50,11 @@
 </form:form>
     </div>
 </div>
+
+<script src="${js}bootstrap.min.js"></script>
+<script src="${js}jquery.min.js"></script>
+<script src="${js}popper.min.js"></script>
+<script src="${js}custom.js"></script>
 
 </body>
 

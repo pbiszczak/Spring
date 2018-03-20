@@ -8,11 +8,12 @@
         <outputRelativeToContentRoot value="true" />
         <module name="KnowledgeRepository" />
         <module name="KnowledgeRepositoryBack" />
+        <module name="KnowledgeRepositoryFront" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
       <module name="KnowledgeRepository" target="1.5" />
-      <module name="KnowledgeRepositoryBack" target="1.5" />
+      <module name="KnowledgeRepositoryBack" target="1.8" />
       <module name="KnowledgeRepositoryFront" target="1.8" />
     </bytecodeTargetLevel>
   </component>
