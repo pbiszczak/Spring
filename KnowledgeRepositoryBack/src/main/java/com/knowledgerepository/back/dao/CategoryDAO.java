@@ -4,7 +4,7 @@ import com.knowledgerepository.back.entity.Category;
 
 import java.util.List;
 
-public interface CategoryDEO {
+public interface CategoryDAO {
 
     List<Category> getAllCategories();
     Category getCategoryById(int id);
