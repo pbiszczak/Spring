@@ -7,6 +7,8 @@ import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.List;
 
 @Repository
@@ -24,7 +26,7 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 
     @Override
-    public List<Category> getAllCategories() {
+    public List<Category> findAllCategories() {
 
         Session currentSession = sessionFactory.getCurrentSession();
 
@@ -34,9 +36,22 @@ public class CategoryDAOImpl implements CategoryDAO {
     }
 
     @Override
-    public Category getCategoryById(int id) {
+    public Category findCategoryById(int id) {
 
         Session currentSession = sessionFactory.getCurrentSession();
         return currentSession.get(Category.class, id);
     }
+
+    public void addCategory(Category category) {
+        sessionFactory.getCurrentSession().save(category);
+    }
+
+    public void deleteCategory(Category category) {
+        sessionFactory.getCurrentSession().delete(category);
+    }
+
+
+
+
+
 }

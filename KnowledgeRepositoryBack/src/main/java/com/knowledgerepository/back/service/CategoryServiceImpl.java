@@ -19,12 +19,12 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Transactional
-    public List<Category> getAllCategories() {
-        return categoryDAO.getAllCategories();
+    public List<Category> findAllCategories() {
+        return categoryDAO.findAllCategories();
     }
 
     @Transactional
-    public Category getCategoryById(int id) {
-        return categoryDAO.getCategoryById(id);
+    public Category findCategoryById(int id) {
+        return categoryDAO.findCategoryById(id);
     }
 }

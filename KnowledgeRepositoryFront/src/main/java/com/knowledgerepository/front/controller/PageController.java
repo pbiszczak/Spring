@@ -23,7 +23,7 @@ public class PageController {
         model.addAttribute("title", "Home");
         model.addAttribute("userClickHome", true);
 
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.findAllCategories());
 
         return "page";
     }
@@ -47,7 +47,7 @@ public class PageController {
     public String showAllProducts(Model model) {
         model.addAttribute("title", "All Products");
 
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.findAllCategories());
 
         model.addAttribute("userClickAllProducts", true);
         return "page";
@@ -58,10 +58,10 @@ public class PageController {
 
 
         // categoryService to fetch a single category
-        Category category = categoryService.getCategoryById(id);
+        Category category = categoryService.findCategoryById(id);
 
         model.addAttribute("title", category.getName());
-        model.addAttribute("categories", categoryService.getAllCategories());
+        model.addAttribute("categories", categoryService.findAllCategories());
         model.addAttribute("category", category);
 
         model.addAttribute("userClickCategoryProducts", true);
