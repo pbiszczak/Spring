@@ -18,7 +18,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScan(basePackages = "com.knowledgerepository")
+@ComponentScan("com.knowledgerepository.back.config")
 public class BackConfiguration {
 
     private final Environment env;
@@ -40,7 +40,7 @@ public class BackConfiguration {
     }
 
     @Bean
-    public SessionFactory getSessionFactory(){
+    public SessionFactory sessionFactory(){
         LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(getDataSource());
 
         Properties properties = new Properties();
@@ -49,14 +49,15 @@ public class BackConfiguration {
         properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         properties.put("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
         properties.put("hibernate.dialect",  env.getProperty("hibernate.database_dialect"));
-
+        builder.scanPackages("com.knowledgerepository.back.entity");
         builder.addProperties(properties);
-        builder.scanPackages("com.knowledgerepository.back");
+
 
         return builder.buildSessionFactory();
     }
 
     @Bean
+    @Autowired
     public HibernateTransactionManager getTransactionManager(SessionFactory sessionFactory) {
         return new HibernateTransactionManager(sessionFactory);
     }

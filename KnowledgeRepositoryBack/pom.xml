@@ -15,14 +15,25 @@
         <jackson.version>2.9.4</jackson.version>
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
+        <testng.version>6.14.2</testng.version>
+        <mockito.version>2.0.2-beta</mockito.version>
+        <h2.version>1.4.197</h2.version>
+        <dbunit.version>2.5.4</dbunit.version>
     </properties>
 
     <dependencies>
 
-        <!-- Spring -->
+        <!-- Spring Web -->
         <dependency>
             <groupId>org.springframework</groupId>
             <artifactId>spring-webmvc</artifactId>
+            <version>${springframework.version}</version>
+        </dependency>
+
+        <!-- Spring core -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-core</artifactId>
             <version>${springframework.version}</version>
         </dependency>
 
@@ -44,7 +55,7 @@
         <dependency>
             <groupId>mysql</groupId>
             <artifactId>mysql-connector-java</artifactId>
-            <version>6.0.5</version>
+            <version>8.0.9-rc</version>
         </dependency>
 
         <!-- Hibernate -->
@@ -64,6 +75,13 @@
             <version>6.0.7.Final</version>
         </dependency>
 
+        <dependency>
+            <groupId>javax.validation</groupId>
+            <artifactId>validation-api</artifactId>
+            <version>2.0.0.Final</version>
+        </dependency>
+
+
 
         <!-- Jackson -->
         <dependency>
@@ -78,9 +96,42 @@
             <version>${jackson.version}</version>
         </dependency>
 
+        <!--Testing-->
+
+        <!-- Spring Test-->
+        <!-- Testing dependencies -->
+        <dependency>
+            <groupId>org.springframework</groupId>
+            <artifactId>spring-test</artifactId>
+            <version>${springframework.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.testng</groupId>
+            <artifactId>testng</artifactId>
+            <version>${testng.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-all</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <version>${h2.version}</version>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.dbunit</groupId>
+            <artifactId>dbunit</artifactId>
+            <version>${dbunit.version}</version>
+            <scope>test</scope>
+        </dependency>
 
     </dependencies>
-
 
     <build>
         <finalName>KnowledgeRepositoryBack</finalName>
@@ -96,6 +147,10 @@
                 </plugin>
             </plugins>
         </pluginManagement>
+
+
+
+
     </build>
 
 </project>

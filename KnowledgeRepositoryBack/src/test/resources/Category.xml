@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <category id="1" name="Laptop" description="Laptop description" image_url="laptop.png" active="true"/>
+    <category id="2" name="Television" description="Television description" image_url="television.png" active="true"/>
+    <category id="3" name="Mobile" description="Mobile description" image_url="mobile.png" active="true"/>
+</dataset>
