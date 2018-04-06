@@ -22,6 +22,8 @@
                         <li class="breadcrumb-item"><a href="${contextRoot}/home">Home</a></li>
                         <li class="breadcrumb-item active">All Products</li>
 
+
+
                     </ol>
                 </c:if>
 
@@ -34,8 +36,10 @@
                         <li class="breadcrumb-item">Category</li>
                         <li class="breadcrumb-item active">${category.name}</li>
 
+
                     </ol>
                 </c:if>
+
 
                 <div class="card card-outline-secondary my-4">
                     <div class="card-header">
@@ -44,6 +48,35 @@
 
 
                     <div class="card-body">
+
+
+                        <table class="table table-hover">
+
+
+                            <thead>
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Name</th>
+                                <th scope="col">Brand</th>
+                                <th scope="col">Price</th>
+                                <th scope="col">Quantity</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <c:forEach var="product" items="${products}">
+                            <tr>
+                                <td>${product.id}</td>
+                                <td>${product.name}</td>
+                                <td>${product.brand}</td>
+                                <td>${product.price}</td>
+                                <td>${product.quantity}</td>
+                            </tr>
+                            </c:forEach>
+
+                            </tbody>
+                            </table>
+
+
                     </div>
 
 

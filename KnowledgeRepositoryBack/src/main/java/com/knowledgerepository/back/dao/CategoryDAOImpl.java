@@ -30,9 +30,9 @@ public class CategoryDAOImpl implements CategoryDAO {
 
         Session currentSession = sessionFactory.getCurrentSession();
 
-        Query<Category> getAllCategoriesFromDB = currentSession.createQuery("from Category", Category.class);
+        Query<Category> findAllCategoriesInDB = currentSession.createQuery("from Category", Category.class);
 
-        return getAllCategoriesFromDB.getResultList();
+        return findAllCategoriesInDB.getResultList();
     }
 
     @Override

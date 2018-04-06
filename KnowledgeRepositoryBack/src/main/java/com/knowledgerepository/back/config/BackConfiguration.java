@@ -18,7 +18,7 @@ import java.util.Properties;
 @Configuration
 @PropertySource("classpath:db.properties")
 @EnableTransactionManagement
-@ComponentScan("com.knowledgerepository.back.config")
+@ComponentScan("com.knowledgerepository.back")
 public class BackConfiguration {
 
     private final Environment env;
@@ -46,10 +46,9 @@ public class BackConfiguration {
         Properties properties = new Properties();
 
         properties.put("hibernate.show_sql", env.getProperty("hibernate.show_sql"));
-        properties.put("hibernate.hbm2ddl.auto", env.getProperty("hibernate.hbm2ddl.auto"));
         properties.put("hibernate.format_sql", env.getProperty("hibernate.format_sql"));
         properties.put("hibernate.dialect",  env.getProperty("hibernate.database_dialect"));
-        builder.scanPackages("com.knowledgerepository.back.entity");
+        builder.scanPackages("com.knowledgerepository.back");
         builder.addProperties(properties);
 
 

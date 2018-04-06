@@ -10,4 +10,5 @@ public interface CategoryDAO {
     Category findCategoryById(int id);
     void addCategory(Category category);
     void deleteCategory(Category category);
+    
 }

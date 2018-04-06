@@ -121,7 +121,7 @@ CREATE TABLE `order_item` (
 	`product_count` int,
 	`price` DECIMAL(10,2),
 	CONSTRAINT `fk_order_item_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
-	CONSTRAINT `fk_order_item_order_detail_id` FOREIGN KEY (`order_id`) REFERENCES `order_detail` (`id`),
+	CONSTRAINT `fk_order_item_order_detail_id` FOREIGN KEY (`order_detail_id`) REFERENCES `order_detail` (`id`),
 	CONSTRAINT `pk_order_item_id` PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
