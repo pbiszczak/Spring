@@ -3,11 +3,6 @@
     <output-path>$PROJECT_DIR$/KnowledgeRepositoryFront/target</output-path>
     <root id="archive" name="KnowledgeRepositoryFront.war">
       <element id="artifact" artifact-name="KnowledgeRepositoryFront:war exploded" />
-      <element id="directory" name="WEB-INF">
-        <element id="directory" name="lib">
-          <element id="artifact" artifact-name="com.knowledgerepository.back:jar:1.0-SNAPSHOT" />
-        </element>
-      </element>
     </root>
   </artifact>
 </component>

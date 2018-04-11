@@ -24,7 +24,11 @@
 
 
 
+                        
+
                     </ol>
+
+
                 </c:if>
 
                 <c:if test="${userClickCategoryProducts == true}">
@@ -36,11 +40,15 @@
                         <li class="breadcrumb-item">Category</li>
                         <li class="breadcrumb-item active">${category.name}</li>
 
-
                     </ol>
+
+
                 </c:if>
 
+                <div class="bs-component">
+                    <jsp:include page="shared/pagination.jsp"/>
 
+                </div>
                 <div class="card card-outline-secondary my-4">
                     <div class="card-header">
                         ${category.name}
