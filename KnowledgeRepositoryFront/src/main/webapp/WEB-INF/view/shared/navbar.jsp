@@ -1,3 +1,5 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
     <div class="container">
         <a class="navbar-brand" href="${contextRoot}/home">Knowledge Repository</a>
@@ -19,6 +21,18 @@
                 </li>
                 <li class="nav-item" id="contact">
                     <a class="nav-link" href="${contextRoot}/contact">Contact</a>
+                </li>
+
+
+                <li class="nav-item" id="login">
+                    <c:choose>
+                        <c:when test="${not empty pageContext.request.userPrincipal}">
+                            <a class="nav-link" href="#">Welcome <b>${pageContext.request.userPrincipal.name}</b>!</a>
+                        </c:when>
+                        <c:otherwise>
+                            <a class="nav-link" href="${contextRoot}/login">Login</a>
+                        </c:otherwise>
+                    </c:choose>
                 </li>
             </ul>
         </div>

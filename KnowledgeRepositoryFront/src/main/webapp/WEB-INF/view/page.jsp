@@ -37,38 +37,40 @@
 </head>
 <body>
 <div class="container fill">
-<!-- Navigation -->
+    <!-- Navigation -->
     <jsp:include page="shared/navbar.jsp"/>
 
-<!-- Page Content -->
-<c:if test="${userClickHome == true}">
+    <!-- Page Content -->
+    <c:if test="${userClickHome == true}">
         <jsp:include page="home.jsp"/>
-</c:if>
+    </c:if>
 
-<c:if test="${userClickAbout == true}">
-    <jsp:include page="about.jsp"/>
-</c:if>
+    <c:if test="${userClickAbout == true}">
+        <jsp:include page="about.jsp"/>
+    </c:if>
 
-<c:if test="${userClickContact == true}">
-    <jsp:include page="contact.jsp"/>
-</c:if>
+    <c:if test="${userClickContact == true}">
+        <jsp:include page="contact.jsp"/>
+    </c:if>
 
-<c:if test="${userClickAllProducts == true or userClickCategoryProducts}">
-    <jsp:include page="listProducts.jsp"/>
-</c:if>
+    <c:if test="${userClickAllProducts == true or userClickCategoryProducts}">
+        <jsp:include page="listProducts.jsp"/>
+    </c:if>
+
+    <c:if test="${userClickLogin == true}">
+        <jsp:include page="login.jsp"/>
+    </c:if>
 
 
-
-<!-- Footer -->
+    <!-- Footer -->
     <jsp:include page="shared/footer.jsp"/>
 
-<!-- Bootstrap core JavaScript -->
-<script src="${js}bootstrap.min.js"></script>
-<script src="${js}jquery.min.js"></script>
-<script src="${js}popper.min.js"></script>
-<script src="${js}custom.js"></script>
+    <!-- Bootstrap core JavaScript -->
+    <script src="${js}bootstrap.min.js"></script>
+    <script src="${js}jquery.min.js"></script>
+    <script src="${js}popper.min.js"></script>
+    <script src="${js}custom.js"></script>
 
-    </div>
 </div>
 </body>
 

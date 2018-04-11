@@ -24,7 +24,22 @@ public class ProductServiceImpl implements ProductService {
     }
 
     @Transactional
-    public List findProductsByCategory(int categoryId) {
+    public List<Product> findProductsByCategory(int categoryId) {
         return productDAO.findProductsByCategory(categoryId);
+    }
+
+    @Transactional
+    public void saveProduct(Product product) {
+        productDAO.saveProduct(product);
+    }
+
+    @Transactional
+    public Product findProductById(int id) {
+        return productDAO.findProductById(id);
+    }
+
+    @Transactional
+    public void deleteProductById(int id) {
+        productDAO.deleteProductById(id);
     }
 }

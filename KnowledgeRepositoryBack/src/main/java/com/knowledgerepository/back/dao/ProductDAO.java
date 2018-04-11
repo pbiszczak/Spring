@@ -7,6 +7,13 @@ import java.util.List;
 public interface ProductDAO {
 
     List<Product> findAllProducts();
-    List findProductsByCategory(int categoryId);
+
+    List<Product> findProductsByCategory(int categoryId);
+
+    void saveProduct(Product product);
+
+    Product findProductById(int id);
+
+    void deleteProductById(int id);
 
 }

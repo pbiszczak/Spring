@@ -13,6 +13,9 @@ $(function () {
         case 'All Products':
             $('#allProducts').addClass('active');
             break;
+        case 'Login':
+            $('#login').addClass('active');
+            break;
         default:
             $('#allProducts').addClass('active');
             $('#a_'+menu).addClass('active');

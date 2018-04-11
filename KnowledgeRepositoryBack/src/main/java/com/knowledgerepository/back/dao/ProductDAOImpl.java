@@ -41,4 +41,27 @@ public class ProductDAOImpl implements ProductDAO {
         return findProductsByCategoryInDB.getResultList();
 
     }
+
+
+    @Override
+    public void saveProduct(Product product) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        currentSession.save(product);
+    }
+
+    @Override
+    public Product findProductById(int id) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        return currentSession.get(Product.class, id);
+    }
+
+    @Override
+    public void deleteProductById(int id) {
+        Session currentSession = sessionFactory.getCurrentSession();
+
+        Query deleteProductByIdFromDB = currentSession.createQuery("delete from Product where id=:productId");
+        deleteProductByIdFromDB.setParameter("productId", id);
+
+        deleteProductByIdFromDB.executeUpdate();
+    }
 }

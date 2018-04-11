@@ -24,7 +24,7 @@
 
 
 
-                        
+
 
                     </ol>
 
@@ -68,21 +68,46 @@
                                 <th scope="col">Brand</th>
                                 <th scope="col">Price</th>
                                 <th scope="col">Quantity</th>
+
+                                <c:if test="${not empty pageContext.request.userPrincipal}">
+
+                                    <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
+                                        <th scope="col">
+
+                                        </th>
+                                    </c:if>
+
+                                </c:if>
                             </tr>
                             </thead>
                             <tbody>
                             <c:forEach var="product" items="${products}">
-                            <tr>
-                                <td>${product.id}</td>
-                                <td>${product.name}</td>
-                                <td>${product.brand}</td>
-                                <td>${product.price}</td>
-                                <td>${product.quantity}</td>
-                            </tr>
+                                <c:url var="deleteProductLink" value="/delete/product/${product.id}">
+                                    <c:param name="urlPath" value="${urlPath}1"/>
+                                </c:url>
+
+                                <tr>
+                                    <td>${product.id}</td>
+                                    <td>${product.name}</td>
+                                    <td>${product.brand}</td>
+                                    <td>${product.price}</td>
+                                    <td>${product.quantity}</td>
+
+                                    <c:if test="${not empty pageContext.request.userPrincipal}">
+
+                                        <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
+                                            <th scope="col">
+                                                <a href="${deleteProductLink}" class="btn btn-danger" role="button"
+                                                   onclick="if (!(confirm('Are your sure?'))) return false">Delete</a>
+                                            </th>
+                                        </c:if>
+
+                                    </c:if>
+                                </tr>
                             </c:forEach>
 
                             </tbody>
-                            </table>
+                        </table>
 
 
                     </div>
@@ -93,9 +118,4 @@
             </div>
         </div>
     </div>
-
-
-</div>
-
-
 </div>
