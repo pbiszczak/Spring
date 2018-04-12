@@ -29,7 +29,7 @@ public class ProductController {
 
 
     @RequestMapping(value = "/products/all/page/{pageNumber}", method = RequestMethod.GET)
-    public String showAllProductsPagination(@PathVariable Integer pageNumber, Model model) {
+    public String showAllProductsPagination(@PathVariable int pageNumber, Model model) {
 
 
         PagedListHolder<Product> page = new PagedListHolder<>(productService.findAllProducts());

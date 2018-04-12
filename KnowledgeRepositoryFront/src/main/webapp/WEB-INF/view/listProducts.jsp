@@ -86,6 +86,9 @@
                                     <c:param name="urlPath" value="${urlPath}1"/>
                                 </c:url>
 
+                                <c:url var="addProductToBasketLink" value="/basket/add/${product.id}">
+                                </c:url>
+
                                 <tr>
                                     <td>${product.id}</td>
                                     <td>${product.name}</td>
@@ -99,6 +102,13 @@
                                             <th scope="col">
                                                 <a href="${deleteProductLink}" class="btn btn-danger" role="button"
                                                    onclick="if (!(confirm('Are your sure?'))) return false">Delete</a>
+                                            </th>
+                                        </c:if>
+                                        <c:if test="${pageContext.request.isUserInRole('USER')}">
+                                            <th scope="col">
+                                                <a href="${addProductToBasketLink}" class="btn btn-info" role="button"
+                                                   onclick="if (!(confirm('Are your sure?'))) return false">Add to
+                                                    basket</a>
                                             </th>
                                         </c:if>
 

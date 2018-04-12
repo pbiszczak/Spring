@@ -61,6 +61,9 @@
         <jsp:include page="login.jsp"/>
     </c:if>
 
+    <c:if test="${userClickBasket == true}">
+        <jsp:include page="basket.jsp"/>
+    </c:if>
 
     <!-- Footer -->
     <jsp:include page="shared/footer.jsp"/>
