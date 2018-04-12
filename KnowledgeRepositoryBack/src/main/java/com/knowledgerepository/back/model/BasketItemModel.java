@@ -4,6 +4,7 @@ import com.knowledgerepository.back.entity.Product;
 import org.springframework.stereotype.Component;
 
 @Component
+
 public class BasketItemModel {
 
     private int productCount;
