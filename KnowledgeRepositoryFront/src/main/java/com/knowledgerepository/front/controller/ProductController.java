@@ -1,11 +1,10 @@
 package com.knowledgerepository.front.controller;
 
 import com.knowledgerepository.back.entity.Category;
-import com.knowledgerepository.back.entity.Product;
+import com.knowledgerepository.back.model.PageListHolderBuilder;
 import com.knowledgerepository.back.service.CategoryService;
 import com.knowledgerepository.back.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.support.PagedListHolder;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +12,8 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import java.util.List;
 
 @Controller
 public class ProductController {
@@ -32,67 +33,52 @@ public class ProductController {
     public String showAllProductsPagination(@PathVariable int pageNumber, Model model) {
 
 
-        PagedListHolder<Product> page = new PagedListHolder<>(productService.findAllProducts());
-        page.setPageSize(PAGE_SIZE);
-        page.setPage(pageNumber - 1);
-
-        int current = page.getPage() + 1;
-        int begin = Math.max(1, current - 5);
-        int end = Math.min(begin + 10, page.getPageCount());
-
-
+        PageListHolderBuilder pageListHolder = buildPageListHolderForAllProducts(pageNumber);
         String urlPath = "/products/all/page/";
+        String title = "All Products";
+        List<Category> categoryList = findAllCategories();
 
-        model.addAttribute("title", "All Products");
-        model.addAttribute("categories", categoryService.findAllCategories());
-
-
-        model.addAttribute("products", page.getPageList());
-        model.addAttribute("beginIndex", begin);
-        model.addAttribute("endIndex", end);
-        model.addAttribute("currentIndex", current);
-        model.addAttribute("pageCount", page.getPageCount());
-
-
+        model.addAttribute("title", title);
+        model.addAttribute("categories", categoryList);
         model.addAttribute("urlPath", urlPath);
+        model.addAttribute("userClickCategoryProducts", true);
 
-        model.addAttribute("userClickAllProducts", true);
+        model.addAttribute("products", pageListHolder.getPageList());
+        model.addAttribute("beginIndex", pageListHolder.getSmallestPageIndexDisplayedInPagination());
+        model.addAttribute("endIndex", pageListHolder.getBiggestPageIndexDisplayedInPagination());
+        model.addAttribute("currentIndex", pageListHolder.getCurrentPageIndex());
+        model.addAttribute("pageCount", pageListHolder.getPageCount());
+
 
         return "page";
     }
 
 
-    @RequestMapping(value = "/products/category/{id}/page/{pageNumber}", method = RequestMethod.GET)
-    public String showCategoryProductsPagination(@PathVariable("id") int id, @PathVariable Integer pageNumber, Model model) {
+    @RequestMapping(value = "/products/category/{categoryId}/page/{pageNumber}", method = RequestMethod.GET)
+    public String showCategoryProductsPagination(@PathVariable("categoryId") int categoryId, @PathVariable Integer pageNumber, Model model) {
 
-        Category category = categoryService.findCategoryById(id);
-
-        PagedListHolder<Product> page = new PagedListHolder<>(productService.findProductsByCategory(id));
-        page.setPageSize(PAGE_SIZE);
-        page.setPage(pageNumber - 1);
-
-        int current = page.getPage() + 1;
-        int begin = Math.max(1, current - 5);
-        int end = Math.min(begin + 10, page.getPageCount());
-
-        String urlPath = "/products/category/" + id + "/page/";
-
-        model.addAttribute("title", category.getName());
-        model.addAttribute("categories", categoryService.findAllCategories());
+        PageListHolderBuilder pageListHolder = buildPageListHolderForCategoryProducts(pageNumber, categoryId);
+        Category category = findCategoryById(categoryId);
+        String urlPath = "/products/category/" + categoryId + "/page/";
+        String title = category.getName();
+        List<Category> categoryList = findAllCategories();
 
         model.addAttribute("category", category);
-        model.addAttribute("products", page.getPageList());
-
-        model.addAttribute("beginIndex", begin);
-        model.addAttribute("endIndex", end);
-        model.addAttribute("currentIndex", current);
-        model.addAttribute("pageCount", page.getPageCount());
-
+        model.addAttribute("title", title);
+        model.addAttribute("categories", categoryList);
         model.addAttribute("urlPath", urlPath);
+        model.addAttribute("userClickAllProducts", true);
 
-        model.addAttribute("userClickCategoryProducts", true);
+        model.addAttribute("products", pageListHolder.getPageList());
+        model.addAttribute("beginIndex", pageListHolder.getSmallestPageIndexDisplayedInPagination());
+        model.addAttribute("endIndex", pageListHolder.getBiggestPageIndexDisplayedInPagination());
+        model.addAttribute("currentIndex", pageListHolder.getCurrentPageIndex());
+        model.addAttribute("pageCount", pageListHolder.getPageCount());
+
+
         return "page";
     }
+
 
     @PreAuthorize(value = "hasRole('ROLE_ADMIN')")
     @RequestMapping("/delete/product/{id}")
@@ -102,6 +88,41 @@ public class ProductController {
 
         return "redirect:" + urlPath;
     }
+
+    private List<Category> findAllCategories() {
+        return categoryService.findAllCategories();
+    }
+
+
+    private Category findCategoryById(int categoryId) {
+        return categoryService.findCategoryById(categoryId);
+    }
+
+
+    private PageListHolderBuilder buildPageListHolderForCategoryProducts(int pageNumber, int categoryId) {
+
+        return new PageListHolderBuilder
+                .Builder(productService.findProductsByCategory(categoryId))
+                .withPageSize(PAGE_SIZE)
+                .withSetPage(pageNumber)
+                .withCalculatePagesIndexesAndPageCount()
+                .build();
+
+    }
+
+    private PageListHolderBuilder buildPageListHolderForAllProducts(int pageNumber) {
+
+        return new PageListHolderBuilder
+                .Builder(productService.findAllProducts())
+                .withPageSize(PAGE_SIZE)
+                .withSetPage(pageNumber)
+                .withCalculatePagesIndexesAndPageCount()
+                .build();
+
+    }
+
+
+
 
 
 }

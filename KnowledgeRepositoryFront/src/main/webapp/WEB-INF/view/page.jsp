@@ -40,7 +40,7 @@
     <!-- Navigation -->
     <jsp:include page="shared/navbar.jsp"/>
 
-    <!-- Page Content -->
+    <!-- PageListHolderBuilder Content -->
     <c:if test="${userClickHome == true}">
         <jsp:include page="home.jsp"/>
     </c:if>
