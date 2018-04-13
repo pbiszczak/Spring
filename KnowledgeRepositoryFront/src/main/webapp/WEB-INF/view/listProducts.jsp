@@ -1,4 +1,5 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <div class="container" style="margin-top: 80px">
 
@@ -67,13 +68,25 @@
                                 <th scope="col">Name</th>
                                 <th scope="col">Brand</th>
                                 <th scope="col">Price</th>
-                                <th scope="col">Quantity</th>
+                                <th scope="col">Stock Quantity</th>
+
+                                <c:if test="${not empty pageContext.request.userPrincipal}">
+
+                                    <c:if test="${pageContext.request.isUserInRole('USER')}">
+
+                                        <th scope="col">Product Count</th>
+                                        <th scope="col">
+                                            Add item
+                                        </th>
+                                    </c:if>
+                                </c:if>
+
 
                                 <c:if test="${not empty pageContext.request.userPrincipal}">
 
                                     <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
                                         <th scope="col">
-
+                                            Delete
                                         </th>
                                     </c:if>
 
@@ -98,21 +111,35 @@
 
                                     <c:if test="${not empty pageContext.request.userPrincipal}">
 
-                                        <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
-                                            <th scope="col">
+                                        <c:if test="${pageContext.request.isUserInRole('USER')}">
+                                            <form:form modelAttribute="listProductsForm"
+                                                       action="${addProductToBasketLink}" method="get">
+                                                <td>
+
+                                                    <form:select path="formProductCount">
+                                                        <c:forEach begin="1" end="${product.quantity}" var="count">
+                                                            <option value="${count}">${count}</option>
+                                                        </c:forEach>
+                                                    </form:select>
+
+                                                </td>
+
+
+                                                <td>
+                                                    <button type="submit" class="btn btn-primary">Add to basket</button>
+                                                </td>
+                                            </form:form>
+
+                                        </c:if>
+                                        <td>
+                                            <c:if test="${pageContext.request.isUserInRole('ADMIN')}">
+
                                                 <a href="${deleteProductLink}" class="btn btn-danger" role="button"
                                                    onclick="if (!(confirm('Are your sure?'))) return false">Delete</a>
-                                            </th>
-                                        </c:if>
-                                        <c:if test="${pageContext.request.isUserInRole('USER')}">
-                                            <th scope="col">
-                                                <a href="${addProductToBasketLink}" class="btn btn-info" role="button"
-                                                   onclick="if (!(confirm('Are your sure?'))) return false">Add to
-                                                    basket</a>
-                                            </th>
-                                        </c:if>
-
+                                            </c:if>
+                                        </td>
                                     </c:if>
+
                                 </tr>
                             </c:forEach>
 

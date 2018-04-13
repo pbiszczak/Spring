@@ -1,8 +1,8 @@
 package com.knowledgerepository.back.model;
 
-import com.knowledgerepository.back.entity.Product;
 import com.knowledgerepository.back.service.ProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -53,36 +53,75 @@ public class BasketModel {
     }
 
 
+
     public List<BasketItemModel> getItems() {
         return basketItems;
     }
 
-    public void updateTotalPayment() {
+    private void updateTotalPayment() {
         this.totalPayment = 0;
         for (BasketItemModel basketItem : basketItems) {
             this.totalPayment += basketItem.getTotalPayment();
         }
     }
 
-    public void addItemToBasketItemsList(int productId, int quantity) {
+    @Secured("ROLE_USER")
+    public void udpdateBasketWithNewProduct(int productId, int productCount) {
+
+        addBasketItemIfNotExist(productId);
+        updateProductCountAndPriceAndTotalPayment(productId, productCount);
+        updateTotalPayment();
+        increaseItemsNumber(productCount);
+
+    }
+
+    private void updateProductCountAndPriceAndTotalPayment(int productId, int productCount) {
+
+        BasketItemModel basketItemModel = findBasketItemOnList(productId);
+        if (basketItemModel != null) {
+            basketItemModel.updateProductCount(productCount);
+            basketItemModel.updateProductPriceAndTotalPayment();
+        }
+    }
+
+
+    private void addBasketItemIfNotExist(int productId) {
+        if (!checkIfBasketItemIsAlredyOnList(productId)) {
+            setProductAndAddItemToBasketItems(productId);
+        }
+    }
+
+    private void setProductAndAddItemToBasketItems(int productId) {
+
+        BasketItemModel basketItemModel = new BasketItemModel();
+        basketItemModel.setProduct(productService.findProductById(productId));
+
+        this.basketItems.add(basketItemModel);
+
+    }
+
+
+    private BasketItemModel findBasketItemOnList(int productId) {
+        for (BasketItemModel basketItem : basketItems) {
+            if (basketItem.getProduct().getId() == productId) {
+                return basketItem;
+            }
+        }
+        return null;
+    }
+
+    private boolean checkIfBasketItemIsAlredyOnList(int productId) {
 
         for (BasketItemModel basketItem : basketItems) {
             if (basketItem.getProduct().getId() == productId) {
-                basketItem.setProductCount(basketItem.getProductCount() + quantity);
-                return;
+                return true;
             }
         }
+        return false;
+    }
 
-        BasketItemModel basketItemModel = new BasketItemModel();
-
-        Product product = productService.findProductById(productId);
-
-        basketItemModel.setProduct(product);
-        basketItemModel.setProductCount(quantity);
-        basketItemModel.setPrice(product.getPrice());
-        basketItemModel.updateTotalPayment();
-
-        this.basketItems.add(basketItemModel);
+    private void increaseItemsNumber(int numberOfItems) {
+        this.numberOfItems += numberOfItems;
     }
 
 

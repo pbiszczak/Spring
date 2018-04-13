@@ -39,17 +39,20 @@ public class ProductController {
         int current = page.getPage() + 1;
         int begin = Math.max(1, current - 5);
         int end = Math.min(begin + 10, page.getPageCount());
+
+
         String urlPath = "/products/all/page/";
 
         model.addAttribute("title", "All Products");
         model.addAttribute("categories", categoryService.findAllCategories());
 
-        model.addAttribute("products", page.getPageList());
 
+        model.addAttribute("products", page.getPageList());
         model.addAttribute("beginIndex", begin);
         model.addAttribute("endIndex", end);
         model.addAttribute("currentIndex", current);
         model.addAttribute("pageCount", page.getPageCount());
+
 
         model.addAttribute("urlPath", urlPath);
 

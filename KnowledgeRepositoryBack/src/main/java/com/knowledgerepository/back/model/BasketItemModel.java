@@ -1,10 +1,10 @@
 package com.knowledgerepository.back.model;
 
 import com.knowledgerepository.back.entity.Product;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Component;
 
 @Component
-
 public class BasketItemModel {
 
     private int productCount;
@@ -22,11 +22,11 @@ public class BasketItemModel {
     }
 
 
-    public int getProductCount() {
+    public int getproductCount() {
         return productCount;
     }
 
-    public void setProductCount(int productCount) {
+    public void setproductCount(int productCount) {
         this.productCount = productCount;
     }
 
@@ -42,9 +42,7 @@ public class BasketItemModel {
         return totalPayment;
     }
 
-    public void updateTotalPayment() {
-        this.totalPayment = this.productCount * this.price;
-    }
+
 
     public Product getProduct() {
         return product;
@@ -52,5 +50,27 @@ public class BasketItemModel {
 
     public void setProduct(Product product) {
         this.product = product;
+    }
+
+
+    private void updateTotalPayment() {
+        this.totalPayment = this.productCount * this.price;
+    }
+
+    private void updatePrice() {
+        this.price = this.product.getPrice();
+    }
+
+    @Secured("ROLE_USER")
+    public void updateProductCount(int productCount) {
+
+        this.productCount += productCount;
+
+    }
+
+    @Secured("ROLE_USER")
+    public void updateProductPriceAndTotalPayment() {
+        updatePrice();
+        updateTotalPayment();
     }
 }

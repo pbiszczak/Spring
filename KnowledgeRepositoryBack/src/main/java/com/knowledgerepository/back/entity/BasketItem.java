@@ -89,4 +89,5 @@ public class BasketItem {
     public void setProduct(Product product) {
         this.product = product;
     }
+
 }

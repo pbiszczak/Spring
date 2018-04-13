@@ -23,6 +23,13 @@
                     <a class="nav-link" href="${contextRoot}/contact">Contact</a>
                 </li>
 
+                <c:if test="${pageContext.request.isUserInRole('USER')}">
+                    <li class="nav-item" id="basket">
+                        <span class="badge badge-warning"><a class="nav-link" href="${contextRoot}/basket">
+                            <span class="glyphicon glyphicon-shopping-cart"></span><span style="padding: 0 8px;">Basket Items:</span><b>${basket.numberOfItems}</b></a>
+                        </span>
+                    </li>
+                </c:if>
 
                 <li class="nav-item" id="login">
                     <c:choose>

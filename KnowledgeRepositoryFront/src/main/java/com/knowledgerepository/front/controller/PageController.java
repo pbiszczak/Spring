@@ -16,7 +16,6 @@ public class PageController {
         this.categoryService = categoryService;
     }
 
-
     @RequestMapping(value = {"/", "/home", "/index"})
     public String index(Model model) {
         model.addAttribute("title", "Home");
