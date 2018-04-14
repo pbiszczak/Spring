@@ -16,7 +16,7 @@ import java.util.Properties;
 
 @Configuration
 @EnableTransactionManagement
-@ComponentScan("com.knowledgerepository.back.dao")
+@ComponentScan("com.knowledgerepository.back")
 public class BackConfigurationTest{
 
     @Autowired

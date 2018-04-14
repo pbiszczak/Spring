@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <product id="1" code="PHONEx1" name="iPhone 5s" brand="apple" description="apple description"
+             price="2000" quantity="8" active="true" category_id="1" supplier_id="2" purchases="0" views="0"/>
+    <product id="2" code="PHONEx2" name="Samsung s7" brand="samsung" description="samsung description"
+             price="4000" quantity="4" active="true" category_id="1" supplier_id="2" purchases="0" views="0"/>
+    <product id="3" code="LAPTOPx1" name="Dell" brand="dell" description="dell description"
+             price="8000" quantity="2" active="false" category_id="3" supplier_id="2" purchases="0" views="0"/>
+</dataset>

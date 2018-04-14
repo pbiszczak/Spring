@@ -58,7 +58,7 @@
     <orderEntry type="library" scope="TEST" name="Maven: org.testng:testng:6.14.2" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.beust:jcommander:1.72" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.apache-extras.beanshell:bsh:2.0b6" level="project" />
-    <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:2.0.2-beta" level="project" />
+    <orderEntry type="library" scope="TEST" name="Maven: org.mockito:mockito-all:1.10.19" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: com.h2database:h2:1.4.197" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.dbunit:dbunit:2.5.4" level="project" />
     <orderEntry type="library" scope="TEST" name="Maven: org.slf4j:slf4j-api:1.7.21" level="project" />
