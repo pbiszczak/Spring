@@ -60,7 +60,7 @@ public class ProductController {
         PageListHolderBuilder pageListHolder = buildPageListHolderForCategoryProducts(pageNumber, categoryId);
         Category category = findCategoryById(categoryId);
         String urlPath = "/products/category/" + categoryId + "/page/";
-        String title = category.getName();
+        String title = findCategoryName(categoryId);
         List<Category> categoryList = findAllCategories();
 
         model.addAttribute("category", category);
@@ -98,6 +98,9 @@ public class ProductController {
         return categoryService.findCategoryById(categoryId);
     }
 
+    private String findCategoryName(int categoryId) {
+        return categoryService.findCategoryById(categoryId).getName();
+    }
 
     private PageListHolderBuilder buildPageListHolderForCategoryProducts(int pageNumber, int categoryId) {
 
