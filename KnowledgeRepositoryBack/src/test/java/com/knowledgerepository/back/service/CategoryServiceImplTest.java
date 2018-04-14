@@ -28,7 +28,7 @@ public class CategoryServiceImplTest {
     CategoryServiceImpl categoryService;
 
     @Spy
-    List<Category> categories = new ArrayList<Category>();
+    List<Category> categories = new ArrayList<>();
 
     @BeforeMethod
     public void buildSpy() {
@@ -49,7 +49,6 @@ public class CategoryServiceImplTest {
 
     @Test
     public void testFindAllCategories() {
-        categories = categoryService.findAllCategories();
         when(categoryDAO.findAllCategories()).thenReturn(categories);
         Assert.assertEquals(categoryService.findAllCategories(), categories);
     }
@@ -58,13 +57,13 @@ public class CategoryServiceImplTest {
     public void setupCategories() {
         this.categories = new ArrayList<>();
         Category category1 = new Category();
-        category1.setName("Laptop");
         category1.setId(1);
+        category1.setName("Laptop");
         category1.setDescription("Laptop description");
 
         Category category2 = new Category();
-        category2.setName("Television");
         category2.setId(2);
+        category2.setName("Television");
         category2.setDescription("Television description");
 
         this.categories.add(category1);
