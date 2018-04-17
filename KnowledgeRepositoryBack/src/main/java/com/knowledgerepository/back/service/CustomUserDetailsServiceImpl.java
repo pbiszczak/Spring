@@ -23,8 +23,8 @@ public class CustomUserDetailsServiceImpl implements CustomUserDetailsService {
     @Transactional
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        User user = userDAO.findUserByUsername(username);
-        UserBuilder userBuilder = null;
+        User user = userDAO.findUserByEmail(username);
+        UserBuilder userBuilder;
 
 
         if (user != null) {

@@ -50,6 +50,7 @@ CREATE TABLE `product` (
 DROP TABLE IF EXISTS `address`;
 
 
+
 CREATE TABLE `address` (
 	`id` int(11) NOT NULL AUTO_INCREMENT,
 	`user_id` int,
@@ -63,33 +64,6 @@ CREATE TABLE `address` (
 	`shipping` BOOLEAN,
 	CONSTRAINT `fk_address_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
 	CONSTRAINT `pk_address_id` PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
-DROP TABLE IF EXISTS `basket`;
-
-
-CREATE TABLE `basket` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`user_id` int,
-	`total_payment` DECIMAL(10,2),
-	`number_of_items` int,
-	CONSTRAINT `fk_basket_user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`),
-	CONSTRAINT pk_basket_id PRIMARY KEY (id)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
-
-
-DROP TABLE IF EXISTS `basket_item`;
-
-CREATE TABLE `basket_item` (
-	`id` int(11) NOT NULL AUTO_INCREMENT,
-	`basket_id` int,
-	`total_payment` DECIMAL(10,2),
-	`product_id` int,
-	`product_count` int,
-	`price` DECIMAL(10,2),
-	`available` boolean,
-	CONSTRAINT `fk_basket_item_product_id` FOREIGN KEY (`product_id`) REFERENCES `product` (`id`),
-	CONSTRAINT pk_basket_item_id PRIMARY KEY (id)
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=latin1;
 
 
@@ -149,9 +123,7 @@ INSERT INTO `user`(first_name, last_name, role, enabled, password, email, contac
 VALUES ('Michal', 'Z', 'USER', true, '$2a$04$M4Z78qI0U59DI2NeTprbTe..lcX8Tv4ifKTsOGLErrjEyHA.EAgmW', 'michal', '123457');
 
 
--- adding five products
 LOCK TABLES `product` WRITE;
-
 
 
 
@@ -166,6 +138,13 @@ VALUES ('LAPTOPx1', ' Macbook Pro', 'apple', 'This is one of the best laptops av
 INSERT INTO `product` (code, name, brand, description, price, quantity, active, category_id, supplier_id, purchases, views)
 VALUES ('LAPTOPx2', 'Dell Latitude E6510', 'dell', 'This is one of the best laptop series from dell that can be used!', 2000, 5, true, 1, 2, 0, 0 );
 
+-- adding five products
+LOCK TABLES `address` WRITE;
 
+INSERT INTO `address` (user_id, `address_line_one`, `address_line_two`, `city`, `state`, `country`, `postal_code`, `billing`, `shipping`)
+VALUES ('3', 'Sezamkowa', '34/5', 'Lublin', 'Lubelskie', 'Poland', '20-000', true, true);
+
+INSERT INTO `address` (user_id, `address_line_one`, `address_line_two`, `city`, `state`, `country`, `postal_code`, `billing`, `shipping`)
+VALUES ('3', 'Programowa', '5/25', 'Lublin', 'Lubelskie', 'Poland', '20-222', true, true);
 
 UNLOCK TABLES;

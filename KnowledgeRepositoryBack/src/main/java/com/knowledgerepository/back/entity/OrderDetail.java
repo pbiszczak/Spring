@@ -33,7 +33,7 @@ public class OrderDetail {
     private User user;
 
     @OneToMany(mappedBy = "orderDetail", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
-    private List<OrderItem> orderItem;
+    private List<OrderItem> orderItems;
 
     public int getId() {
         return id;
@@ -91,11 +91,11 @@ public class OrderDetail {
         this.user = user;
     }
 
-    public List<OrderItem> getOrderItem() {
-        return orderItem;
+    public List<OrderItem> getOrderItems() {
+        return orderItems;
     }
 
-    public void setOrderItem(List<OrderItem> orderItem) {
-        this.orderItem = orderItem;
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
     }
 }

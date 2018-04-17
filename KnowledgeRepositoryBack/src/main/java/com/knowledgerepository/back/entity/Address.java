@@ -42,9 +42,6 @@ public class Address {
     @Column(name = "shipping")
     private boolean shipping;
 
-    @Column(name = "user_id")
-    private int userId;
-
     public int getId() {
         return id;
     }
@@ -117,11 +114,14 @@ public class Address {
         this.shipping = shipping;
     }
 
-    public int getUserId() {
-        return userId;
-    }
-
-    public void setUserId(int userId) {
-        this.userId = userId;
+    @Override
+    public String toString() {
+        return
+                addressLineOne
+                        + ' ' + addressLineTwo
+                        + ", " + city
+                        + ' ' + postal_code
+                        + ' ' + city
+                ;
     }
 }

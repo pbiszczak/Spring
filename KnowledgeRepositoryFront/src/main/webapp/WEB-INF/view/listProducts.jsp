@@ -116,7 +116,7 @@
                                                        action="${addProductToBasketLink}" method="get">
                                                 <td>
 
-                                                    <form:select path="formProductCount">
+                                                    <form:select path="selectedProductCountValue">
                                                         <c:forEach begin="1" end="${product.quantity}" var="count">
                                                             <option value="${count}">${count}</option>
                                                         </c:forEach>

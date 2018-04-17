@@ -65,6 +65,14 @@
         <jsp:include page="basket.jsp"/>
     </c:if>
 
+    <c:if test="${userClickCheckout == true}">
+        <jsp:include page="checkout.jsp"/>
+    </c:if>
+
+    <c:if test="${userClickFinalizeCheckout == true}">
+        <jsp:include page="finalizeCheckout.jsp"/>
+    </c:if>
+
     <!-- Footer -->
     <jsp:include page="shared/footer.jsp"/>
 

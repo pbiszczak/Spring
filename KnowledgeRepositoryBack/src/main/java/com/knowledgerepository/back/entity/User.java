@@ -2,6 +2,7 @@ package com.knowledgerepository.back.entity;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 
 @Entity
 @Table(name = "user")
@@ -41,9 +42,9 @@ public class User {
     @Transient
     private String confirmPassword;
 
-
-    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    private Basket basket;
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "user_id")
+    private List<Address> addresses;
 
 
     public int getId() {
@@ -118,11 +119,11 @@ public class User {
         this.confirmPassword = confirmPassword;
     }
 
-    public Basket getBasket() {
-        return basket;
+    public List<Address> getAddresses() {
+        return addresses;
     }
 
-    public void setBasket(Basket basket) {
-        this.basket = basket;
+    public void setAddresses(List<Address> addresses) {
+        this.addresses = addresses;
     }
 }

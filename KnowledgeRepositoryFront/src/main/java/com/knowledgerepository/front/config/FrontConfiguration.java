@@ -1,7 +1,9 @@
 package com.knowledgerepository.front.config;
 
+import com.knowledgerepository.front.converters.AddressIdToAddressConverter;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.format.FormatterRegistry;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
 import org.springframework.web.servlet.config.annotation.ViewResolverRegistry;
@@ -30,4 +32,10 @@ public class FrontConfiguration implements WebMvcConfigurer {
     }
 
 
+    @Override
+    public void addFormatters(FormatterRegistry registry) {
+
+        registry.addConverter(new AddressIdToAddressConverter());
+
+    }
 }

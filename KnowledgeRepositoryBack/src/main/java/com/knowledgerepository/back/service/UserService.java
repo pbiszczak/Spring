@@ -1,10 +1,12 @@
-package com.knowledgerepository.back.dao;
+package com.knowledgerepository.back.service;
 
 import com.knowledgerepository.back.entity.User;
 
-public interface UserDAO {
+public interface UserService {
 
     User findUserByEmail(String email);
 
     User findUserByEmailAndFetchAddresses(String email);
+
+
 }

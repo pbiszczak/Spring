@@ -52,11 +52,10 @@ public class BasketModel {
         this.numberOfItems = numberOfItems;
     }
 
-
-
-    public List<BasketItemModel> getItems() {
+    public List<BasketItemModel> getBasketItems() {
         return basketItems;
     }
+
 
     private void updateTotalPayment() {
         this.totalPayment = 0;

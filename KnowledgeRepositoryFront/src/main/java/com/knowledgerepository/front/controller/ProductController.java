@@ -1,6 +1,7 @@
 package com.knowledgerepository.front.controller;
 
 import com.knowledgerepository.back.entity.Category;
+import com.knowledgerepository.back.model.ListProductsForm;
 import com.knowledgerepository.back.model.PageListHolderBuilder;
 import com.knowledgerepository.back.service.CategoryService;
 import com.knowledgerepository.back.service.ProductService;
@@ -38,6 +39,7 @@ public class ProductController {
         String title = "All Products";
         List<Category> categoryList = findAllCategories();
 
+        model.addAttribute("listProductsForm", new ListProductsForm());
         model.addAttribute("title", title);
         model.addAttribute("categories", categoryList);
         model.addAttribute("urlPath", urlPath);
@@ -63,6 +65,7 @@ public class ProductController {
         String title = findCategoryName(categoryId);
         List<Category> categoryList = findAllCategories();
 
+        model.addAttribute("listProductsForm", new ListProductsForm());
         model.addAttribute("category", category);
         model.addAttribute("title", title);
         model.addAttribute("categories", categoryList);

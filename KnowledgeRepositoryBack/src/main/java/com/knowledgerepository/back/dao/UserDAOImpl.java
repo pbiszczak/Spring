@@ -18,10 +18,18 @@ public class UserDAOImpl implements UserDAO {
     }
 
     @Override
-    public User findUserByUsername(String username) {
+    public User findUserByEmail(String email) {
         Session currentSession = sessionFactory.getCurrentSession();
         Query<User> findUserByUsernameFromDB = currentSession.createQuery("from User where email=:userEmail", User.class);
-        findUserByUsernameFromDB.setParameter("userEmail", username);
+        findUserByUsernameFromDB.setParameter("userEmail", email);
+        return findUserByUsernameFromDB.getSingleResult();
+    }
+
+    @Override
+    public User findUserByEmailAndFetchAddresses(String email) {
+        Session currentSession = sessionFactory.getCurrentSession();
+        Query<User> findUserByUsernameFromDB = currentSession.createQuery("SELECT u from User u JOIN FETCH u.addresses where u.email=:userEmail", User.class);
+        findUserByUsernameFromDB.setParameter("userEmail", email);
         return findUserByUsernameFromDB.getSingleResult();
     }
 }

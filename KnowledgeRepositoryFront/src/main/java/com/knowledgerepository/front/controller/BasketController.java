@@ -16,7 +16,7 @@ public class BasketController {
     public String showBasket(@ModelAttribute("basket") BasketModel basketModel, Model model) {
 
         model.addAttribute("title", "Basket");
-        model.addAttribute("basketItems", basketModel.getItems());
+        model.addAttribute("basketItems", basketModel.getBasketItems());
 
         model.addAttribute("userClickBasket", true);
         return "page";
@@ -24,12 +24,12 @@ public class BasketController {
 
     @PreAuthorize(value = "hasRole('ROLE_USER')")
     @RequestMapping(value = "/basket/add/{id}", method = RequestMethod.GET)
-    public String addItemToBasket(@PathVariable("id") int id, @RequestParam("formProductCount") int quantity, @ModelAttribute("basket") BasketModel basketModel, Model model) {
+    public String addItemToBasket(@PathVariable("id") int id, @RequestParam("selectedProductCountValue") int quantity, @ModelAttribute("basket") BasketModel basketModel, Model model) {
 
         basketModel.udpdateBasketWithNewProduct(id, quantity);
 
         model.addAttribute("title", "Basket");
-        model.addAttribute("basketItems", basketModel.getItems());
+        model.addAttribute("basketItems", basketModel.getBasketItems());
 
         model.addAttribute("userClickBasket", true);
         return "page";

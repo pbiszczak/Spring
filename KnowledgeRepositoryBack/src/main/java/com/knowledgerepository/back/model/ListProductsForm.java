@@ -5,13 +5,13 @@ import org.springframework.stereotype.Component;
 @Component
 public class ListProductsForm {
 
-    private Integer formProductCount;
+    private Integer selectedProductCountValue;
 
-    public Integer getFormProductCount() {
-        return formProductCount;
+    public Integer getSelectedProductCountValue() {
+        return selectedProductCountValue;
     }
 
-    public void setFormProductCount(Integer formProductCount) {
-        this.formProductCount = formProductCount;
+    public void setSelectedProductCountValue(Integer selectedProductCountValue) {
+        this.selectedProductCountValue = selectedProductCountValue;
     }
 }
